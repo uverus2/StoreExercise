@@ -26,16 +26,14 @@ function formChanged(event) {
     var total = 0;
     var choices = "";
 
-for (var=i; i < form.extras.length;i++)
+for (var i=0; i < form.extras.length;i++)
     
     if (form.extras[i].checked) {
         
-        numberProduct = preseInt(form.product[1].dataset.price);
-        subTotal = subTotal + numberTotal;
-        
-        choices=choices + "<p>" + form.extra[i].dataset.data.disc + "</p>"
-        
-        
+    numberTotal =  parseInt(form.product[i].dataset.price);
+    subTotal = subTotal +  numberTotal; 
+    
+     choices=choices + "<p>" + form.extra[i].dataset.data.disc + "</p>"
         
     } /* end of if */
 
