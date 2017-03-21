@@ -22,25 +22,38 @@ function formChanged(event) {
     
     var subTotal = 0;
     var shipping = 0;
-    var taxes = (20/100) * subTotal;
-    var total = subTotal + taxes + shipping;
+    var taxes = 0;
+    var total = 0;
+    var netTotal = 0;
     var choices = "";
+    
+     console.log("the form has changed");
 
-for (var i=0; i < form.extras.length;i++) {
+for (var i=0; i < form.product.length;i++) {
     
-    if (form.extras[i].checked) {
+    if (form.product[i].checked) {
         
-    numberTotal =  parseInt(form.product[i].dataset.price);
-    subTotal = subTotal +  numberTotal; 
+    var numberTotal =  parseInt(form.product[i].dataset.price);
+          netTotal = form.product[i].getElement * numberTotal;
+    subTotal = subTotal +  netTotal; 
     
-     choices=choices + "<p>" + form.extra[i].dataset.data.disc + "</p>"
+     // choices=choices + "<p>" + form.extra[i].dataset.data.disc + "</p>"
         
+     
+     
+          
+     
+     
     } /* end of if */
     } /* end of loop */
-    if (subTotal<100){
+    
+    if (subTotal>100){
         
         shipping=10
     }/* end of if */
+    
+    taxes = 0.2*subTotal; 
+    total = subTotal+taxes+shipping;
     
 document.getElementById("sub-total").innerHTML =  "£" + subTotal;
 document.getElementById("shipping").innerHTML =  "£" + shipping;
